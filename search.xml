@@ -2,21 +2,13 @@
 <search>
   <entry>
     <title></title>
-    <url>%2F2019%2F04%2F20%2F%E6%96%B0%E5%BB%BA%E6%96%87%E6%9C%AC%E6%96%87%E6%A1%A3%2F</url>
+    <url>%2F2019%2F04%2F20%2F%E7%A7%81%E4%BA%BA%E6%97%A5%E8%AE%B0%2F%E6%96%B0%E5%BB%BA%E6%96%87%E6%9C%AC%E6%96%87%E6%A1%A3%2F</url>
     <content type="text"><![CDATA[Markdown简介代码块qqqq 1234567891011121314151617//增删改查if(request()-&gt;isPost())&#123; dump($_POST); $data = [ 'name' =&gt; input('user'), 'pwd' =&gt; input('pwd') ]; $res =Db::table('user')-&gt;insert($data); echo Db::table('user')-&gt;getLastSql(); if($res)&#123; return $this-&gt;success('注册成功'); &#125;else&#123; return $this-&gt;error("注册失败"); &#125; &#125;else&#123; return $this-&gt;fetch(); &#125; Markdown简介代码块1234567891011121314151617//增删改查if(request()-&gt;isPost())&#123; dump($_POST); $data = [ 'name' =&gt; input('user'), 'pwd' =&gt; input('pwd') ]; $res =Db::table('user')-&gt;insert($data); echo Db::table('user')-&gt;getLastSql(); if($res)&#123; return $this-&gt;success('注册成功'); &#125;else&#123; return $this-&gt;error("注册失败"); &#125; &#125;else&#123; return $this-&gt;fetch(); &#125; Markdown简介代码块1234567891011121314151617//增删改查111if(request()-&gt;isPost())&#123; dump($_POST); $data = [ 'name' =&gt; input('user'), 'pwd' =&gt; input('pwd') ]; $res =Db::table('user')-&gt;insert($data); echo Db::table('user')-&gt;getLastSql(); if($res)&#123; return $this-&gt;success('注册成功'); &#125;else&#123; return $this-&gt;error("注册失败"); &#125; &#125;else&#123; return $this-&gt;fetch(); &#125;]]></content>
   </entry>
   <entry>
-    <title><![CDATA[不一样]]></title>
-    <url>%2F2017%2F05%2F26%2Fhello-world1111%2F</url>
-    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
-      <categories>
-        <category>杂记</category>
-      </categories>
-      <tags>
-        <tag>jQuery</tag>
-        <tag>表格</tag>
-        <tag>表单验证</tag>
-      </tags>
+    <title></title>
+    <url>%2F2019%2F04%2F20%2F%E6%96%B0%E5%BB%BA%E6%96%87%E6%9C%AC%E6%96%87%E6%A1%A3%2F</url>
+    <content type="text"><![CDATA[Markdown简介代码块qqqq 1234567891011121314151617//增删改查if(request()-&gt;isPost())&#123; dump($_POST); $data = [ 'name' =&gt; input('user'), 'pwd' =&gt; input('pwd') ]; $res =Db::table('user')-&gt;insert($data); echo Db::table('user')-&gt;getLastSql(); if($res)&#123; return $this-&gt;success('注册成功'); &#125;else&#123; return $this-&gt;error("注册失败"); &#125; &#125;else&#123; return $this-&gt;fetch(); &#125; Markdown简介代码块1234567891011121314151617//增删改查if(request()-&gt;isPost())&#123; dump($_POST); $data = [ 'name' =&gt; input('user'), 'pwd' =&gt; input('pwd') ]; $res =Db::table('user')-&gt;insert($data); echo Db::table('user')-&gt;getLastSql(); if($res)&#123; return $this-&gt;success('注册成功'); &#125;else&#123; return $this-&gt;error("注册失败"); &#125; &#125;else&#123; return $this-&gt;fetch(); &#125; Markdown简介代码块1234567891011121314151617//增删改查111if(request()-&gt;isPost())&#123; dump($_POST); $data = [ 'name' =&gt; input('user'), 'pwd' =&gt; input('pwd') ]; $res =Db::table('user')-&gt;insert($data); echo Db::table('user')-&gt;getLastSql(); if($res)&#123; return $this-&gt;success('注册成功'); &#125;else&#123; return $this-&gt;error("注册失败"); &#125; &#125;else&#123; return $this-&gt;fetch(); &#125;]]></content>
   </entry>
   <entry>
     <title><![CDATA[飒飒]]></title>
@@ -34,6 +26,58 @@
   <entry>
     <title><![CDATA[jQuery对表单的操作及更多应用]]></title>
     <url>%2F2017%2F05%2F26%2Fxxxxxxxxxx%20%5BTOC%5D%2F</url>
+    <content type="text"><![CDATA[[toc] Markdown简介代码块1234567891011121314151617//增删改查if(request()-&gt;isPost())&#123; dump($_POST); $data = [ 'name' =&gt; input('user'), 'pwd' =&gt; input('pwd') ]; $res =Db::table('user')-&gt;insert($data); echo Db::table('user')-&gt;getLastSql(); if($res)&#123; return $this-&gt;success('注册成功'); &#125;else&#123; return $this-&gt;error("注册失败"); &#125; &#125;else&#123; return $this-&gt;fetch(); &#125; Markdown简介代码块1234567891011121314151617//增删改查if(request()-&gt;isPost())&#123; dump($_POST); $data = [ 'name' =&gt; input('user'), 'pwd' =&gt; input('pwd') ]; $res =Db::table('user')-&gt;insert($data); echo Db::table('user')-&gt;getLastSql(); if($res)&#123; return $this-&gt;success('注册成功'); &#125;else&#123; return $this-&gt;error("注册失败"); &#125; &#125;else&#123; return $this-&gt;fetch(); &#125; Markdown简介代码块1234567891011121314151617//增删改查if(request()-&gt;isPost())&#123; dump($_POST); $data = [ 'name' =&gt; input('user'), 'pwd' =&gt; input('pwd') ]; $res =Db::table('user')-&gt;insert($data); echo Db::table('user')-&gt;getLastSql(); if($res)&#123; return $this-&gt;success('注册成功'); &#125;else&#123; return $this-&gt;error("注册失败"); &#125; &#125;else&#123; return $this-&gt;fetch(); &#125;]]></content>
+      <categories>
+        <category>web前端</category>
+      </categories>
+      <tags>
+        <tag>jQuery</tag>
+        <tag>表格</tag>
+        <tag>表单验证</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[不一样]]></title>
+    <url>%2F2017%2F05%2F26%2Fhello-world1111%2F</url>
+    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+      <categories>
+        <category>杂记</category>
+      </categories>
+      <tags>
+        <tag>jQuery</tag>
+        <tag>表格</tag>
+        <tag>表单验证</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[飒飒]]></title>
+    <url>%2F2017%2F05%2F26%2F%E7%A7%81%E4%BA%BA%E6%97%A5%E8%AE%B0%2Fhello-world%2F</url>
+    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+      <categories>
+        <category>杂记</category>
+      </categories>
+      <tags>
+        <tag>jQuery</tag>
+        <tag>表格</tag>
+        <tag>表单验证</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[不一样]]></title>
+    <url>%2F2017%2F05%2F26%2F%E7%A7%81%E4%BA%BA%E6%97%A5%E8%AE%B0%2Fhello-world1111%2F</url>
+    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+      <categories>
+        <category>杂记</category>
+      </categories>
+      <tags>
+        <tag>jQuery</tag>
+        <tag>表格</tag>
+        <tag>表单验证</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[jQuery对表单的操作及更多应用]]></title>
+    <url>%2F2017%2F05%2F26%2F%E7%A7%81%E4%BA%BA%E6%97%A5%E8%AE%B0%2Fxxxxxxxxxx%20%5BTOC%5D%2F</url>
     <content type="text"><![CDATA[[toc] Markdown简介代码块1234567891011121314151617//增删改查if(request()-&gt;isPost())&#123; dump($_POST); $data = [ 'name' =&gt; input('user'), 'pwd' =&gt; input('pwd') ]; $res =Db::table('user')-&gt;insert($data); echo Db::table('user')-&gt;getLastSql(); if($res)&#123; return $this-&gt;success('注册成功'); &#125;else&#123; return $this-&gt;error("注册失败"); &#125; &#125;else&#123; return $this-&gt;fetch(); &#125; Markdown简介代码块1234567891011121314151617//增删改查if(request()-&gt;isPost())&#123; dump($_POST); $data = [ 'name' =&gt; input('user'), 'pwd' =&gt; input('pwd') ]; $res =Db::table('user')-&gt;insert($data); echo Db::table('user')-&gt;getLastSql(); if($res)&#123; return $this-&gt;success('注册成功'); &#125;else&#123; return $this-&gt;error("注册失败"); &#125; &#125;else&#123; return $this-&gt;fetch(); &#125; Markdown简介代码块1234567891011121314151617//增删改查if(request()-&gt;isPost())&#123; dump($_POST); $data = [ 'name' =&gt; input('user'), 'pwd' =&gt; input('pwd') ]; $res =Db::table('user')-&gt;insert($data); echo Db::table('user')-&gt;getLastSql(); if($res)&#123; return $this-&gt;success('注册成功'); &#125;else&#123; return $this-&gt;error("注册失败"); &#125; &#125;else&#123; return $this-&gt;fetch(); &#125;]]></content>
       <categories>
         <category>web前端</category>
