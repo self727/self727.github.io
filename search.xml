@@ -2,6 +2,11 @@
 <search>
   <entry>
     <title></title>
+    <url>%2F2019%2F04%2F20%2FUntitled%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title></title>
     <url>%2F2019%2F04%2F20%2F%E6%96%B0%E5%BB%BA%E6%96%87%E6%9C%AC%E6%96%87%E6%A1%A3%2F</url>
     <content type="text"><![CDATA[Markdown简介代码块qqqq 1234567891011121314151617//增删改查if(request()-&gt;isPost())&#123; dump($_POST); $data = [ 'name' =&gt; input('user'), 'pwd' =&gt; input('pwd') ]; $res =Db::table('user')-&gt;insert($data); echo Db::table('user')-&gt;getLastSql(); if($res)&#123; return $this-&gt;success('注册成功'); &#125;else&#123; return $this-&gt;error("注册失败"); &#125; &#125;else&#123; return $this-&gt;fetch(); &#125; Markdown简介代码块1234567891011121314151617//增删改查if(request()-&gt;isPost())&#123; dump($_POST); $data = [ 'name' =&gt; input('user'), 'pwd' =&gt; input('pwd') ]; $res =Db::table('user')-&gt;insert($data); echo Db::table('user')-&gt;getLastSql(); if($res)&#123; return $this-&gt;success('注册成功'); &#125;else&#123; return $this-&gt;error("注册失败"); &#125; &#125;else&#123; return $this-&gt;fetch(); &#125; Markdown简介代码块1234567891011121314151617//增删改查111if(request()-&gt;isPost())&#123; dump($_POST); $data = [ 'name' =&gt; input('user'), 'pwd' =&gt; input('pwd') ]; $res =Db::table('user')-&gt;insert($data); echo Db::table('user')-&gt;getLastSql(); if($res)&#123; return $this-&gt;success('注册成功'); &#125;else&#123; return $this-&gt;error("注册失败"); &#125; &#125;else&#123; return $this-&gt;fetch(); &#125;]]></content>
   </entry>
