@@ -1,52 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title></title>
-    <url>%2F2019%2F04%2F20%2FUntitled%2F</url>
-    <content type="text"></content>
-  </entry>
-  <entry>
-    <title></title>
-    <url>%2F2019%2F04%2F20%2F%E6%96%B0%E5%BB%BA%E6%96%87%E6%9C%AC%E6%96%87%E6%A1%A3%2F</url>
-    <content type="text"><![CDATA[Markdown简介代码块qqqq 1234567891011121314151617//增删改查if(request()-&gt;isPost())&#123; dump($_POST); $data = [ 'name' =&gt; input('user'), 'pwd' =&gt; input('pwd') ]; $res =Db::table('user')-&gt;insert($data); echo Db::table('user')-&gt;getLastSql(); if($res)&#123; return $this-&gt;success('注册成功'); &#125;else&#123; return $this-&gt;error("注册失败"); &#125; &#125;else&#123; return $this-&gt;fetch(); &#125; Markdown简介代码块1234567891011121314151617//增删改查if(request()-&gt;isPost())&#123; dump($_POST); $data = [ 'name' =&gt; input('user'), 'pwd' =&gt; input('pwd') ]; $res =Db::table('user')-&gt;insert($data); echo Db::table('user')-&gt;getLastSql(); if($res)&#123; return $this-&gt;success('注册成功'); &#125;else&#123; return $this-&gt;error("注册失败"); &#125; &#125;else&#123; return $this-&gt;fetch(); &#125; Markdown简介代码块1234567891011121314151617//增删改查111if(request()-&gt;isPost())&#123; dump($_POST); $data = [ 'name' =&gt; input('user'), 'pwd' =&gt; input('pwd') ]; $res =Db::table('user')-&gt;insert($data); echo Db::table('user')-&gt;getLastSql(); if($res)&#123; return $this-&gt;success('注册成功'); &#125;else&#123; return $this-&gt;error("注册失败"); &#125; &#125;else&#123; return $this-&gt;fetch(); &#125;]]></content>
-  </entry>
-  <entry>
-    <title><![CDATA[jQuery对表单的操作及更多应用]]></title>
-    <url>%2F2017%2F05%2F26%2Fxxxxxxxxxx%20%5BTOC%5D%2F</url>
-    <content type="text"><![CDATA[[toc] Markdown简介代码块1234567891011121314151617//增删改查if(request()-&gt;isPost())&#123; dump($_POST); $data = [ 'name' =&gt; input('user'), 'pwd' =&gt; input('pwd') ]; $res =Db::table('user')-&gt;insert($data); echo Db::table('user')-&gt;getLastSql(); if($res)&#123; return $this-&gt;success('注册成功'); &#125;else&#123; return $this-&gt;error("注册失败"); &#125; &#125;else&#123; return $this-&gt;fetch(); &#125; Markdown简介代码块1234567891011121314151617//增删改查if(request()-&gt;isPost())&#123; dump($_POST); $data = [ 'name' =&gt; input('user'), 'pwd' =&gt; input('pwd') ]; $res =Db::table('user')-&gt;insert($data); echo Db::table('user')-&gt;getLastSql(); if($res)&#123; return $this-&gt;success('注册成功'); &#125;else&#123; return $this-&gt;error("注册失败"); &#125; &#125;else&#123; return $this-&gt;fetch(); &#125; Markdown简介代码块1234567891011121314151617//增删改查if(request()-&gt;isPost())&#123; dump($_POST); $data = [ 'name' =&gt; input('user'), 'pwd' =&gt; input('pwd') ]; $res =Db::table('user')-&gt;insert($data); echo Db::table('user')-&gt;getLastSql(); if($res)&#123; return $this-&gt;success('注册成功'); &#125;else&#123; return $this-&gt;error("注册失败"); &#125; &#125;else&#123; return $this-&gt;fetch(); &#125;]]></content>
+    <title><![CDATA[Chinese family reportedly paid $6.5 million for spot at Stanford]]></title>
+    <url>%2F2019%2F05%2F10%2F%E8%8B%B1%E6%96%871%2F</url>
+    <content type="text"><![CDATA[From the day in March that prosecutors announced charges against 50 people in a sweeping college admissions fraud investigation, they have held out a tantalizing mystery: an unnamed family that they said had paid the college consultant at the center of the scheme $6.5 million — far more than any of the parents named in the case — to get their child into college. The student is Yusi Zhao, who was admitted to Stanford in 2017, according to a person with direct knowledge of the investigation. At a court hearing in March, the lead prosecutor in the admissions case, Eric S. Rosen, said that college consultant William Singer had tried to get Zhao — whom Rosen did not identify by name — recruited to the Stanford sailing team and created a false profile of her supposed sailing achievements. She was ultimately not recruited, but Rosen said that she was admitted to Stanford partly on the basis of those false credentials and that, after her admission, Singer made a $500, 000 donation to the Stanford sailing program. Zhao appears to have participated in a recent conference hosted by the Princeton U.S.-China Coalition. Her biography on the group’s website said she was planning to major in Psychology and East Asian Studies and was interested in education policy in China.]]></content>
       <categories>
-        <category>web前端</category>
+        <category>英文学习</category>
       </categories>
       <tags>
-        <tag>jQuery</tag>
-        <tag>表格</tag>
-        <tag>表单验证</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[飒飒]]></title>
-    <url>%2F2017%2F05%2F26%2Fhello-world%2F</url>
-    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
-      <categories>
-        <category>杂记</category>
-      </categories>
-      <tags>
-        <tag>jQuery</tag>
-        <tag>表格</tag>
-        <tag>表单验证</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[不一样]]></title>
-    <url>%2F2017%2F05%2F26%2Fhello-world1111%2F</url>
-    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
-      <categories>
-        <category>杂记</category>
-      </categories>
-      <tags>
-        <tag>jQuery</tag>
-        <tag>表格</tag>
-        <tag>表单验证</tag>
+        <tag>解决问题</tag>
       </tags>
   </entry>
 </search>
