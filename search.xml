@@ -22,4 +22,17 @@
         <tag>学习</tag>
       </tags>
   </entry>
+  <entry>
+    <title><![CDATA[模板文件]]></title>
+    <url>%2F2017%2F05%2F26%2Fxxxxxxxxxx%20%5BTOC%5D%2F</url>
+    <content type="text"><![CDATA[[toc] Markdown简介代码块1234567891011121314151617//增删改查if(request()-&gt;isPost())&#123; dump($_POST); $data = [ 'name' =&gt; input('user'), 'pwd' =&gt; input('pwd') ]; $res =Db::table('user')-&gt;insert($data); echo Db::table('user')-&gt;getLastSql(); if($res)&#123; return $this-&gt;success('注册成功'); &#125;else&#123; return $this-&gt;error("注册失败"); &#125; &#125;else&#123; return $this-&gt;fetch(); &#125; Markdown简介代码块1234567891011121314151617//增删改查if(request()-&gt;isPost())&#123; dump($_POST); $data = [ 'name' =&gt; input('user'), 'pwd' =&gt; input('pwd') ]; $res =Db::table('user')-&gt;insert($data); echo Db::table('user')-&gt;getLastSql(); if($res)&#123; return $this-&gt;success('注册成功'); &#125;else&#123; return $this-&gt;error("注册失败"); &#125; &#125;else&#123; return $this-&gt;fetch(); &#125; Markdown简介代码块1234567891011121314151617//增删改查if(request()-&gt;isPost())&#123; dump($_POST); $data = [ 'name' =&gt; input('user'), 'pwd' =&gt; input('pwd') ]; $res =Db::table('user')-&gt;insert($data); echo Db::table('user')-&gt;getLastSql(); if($res)&#123; return $this-&gt;success('注册成功'); &#125;else&#123; return $this-&gt;error("注册失败"); &#125; &#125;else&#123; return $this-&gt;fetch(); &#125;]]></content>
+      <categories>
+        <category>web前端</category>
+      </categories>
+      <tags>
+        <tag>jQuery</tag>
+        <tag>表格</tag>
+        <tag>表单验证</tag>
+      </tags>
+  </entry>
 </search>
