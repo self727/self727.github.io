@@ -1822,7 +1822,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ffda42;
+  background: #ff29a3;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2936,4 +2936,7 @@ code {
 }
 .local-search-popup {
   background: #555;
+}
+.scrubber {
+  width: 270px;
 }
