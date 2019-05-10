@@ -1822,7 +1822,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ff04ff;
+  background: #ffda42;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2910,11 +2910,23 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: 50% 50%;
+  font-family: Georgia, Helvetica Neue, Helvetica, STHeitiSC-Light, Arial, sans-serif;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: Georgia, Helvetica Neue, Helvetica, STHeitiSC-Light, Arial, sans-serif;
+}
+.post-body {
+  font-family: Georgia, Helvetica Neue, Helvetica, STHeitiSC-Light, Arial, sans-serif;
 }
 .main-inner {
   background: #555;
 }
-.code {
+code {
   padding: 2px 4px;
   word-wrap: break-word;
   color: #c7254e;
