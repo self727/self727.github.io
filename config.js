@@ -1,1 +1,229 @@
-const COS_BASE_URL = 'https://web-1256805236.cos.ap-guangzhou.myqcloud.com';
+const CONFIG_URL = 'https://rough-wind-37be.dyw1618.workers.dev/env.json';
+const PRESIGN_ENDPOINT = 'https://cos-presign-worker.dyw1618.workers.dev/presign?key=env.json&type=put';
+
+let config = { title: '', sections: [] };
+let draggedIndex = null;
+let isEditing = false;
+let cachedETag = '';
+let lastConfigText = '';
+
+async function loadConfig() {
+    const status = document.getElementById('status');
+    const title = document.getElementById('page-title');
+
+    try {
+        const res = await fetch(CONFIG_URL, {
+            headers: cachedETag ? { 'If-None-Match': cachedETag } : {}
+        });
+
+        if (res.status === 304) {
+            status.textContent = '⚠️ 远程配置未变化，跳过更新';
+            return;
+        }
+
+        if (!res.ok) throw new Error(`加载失败：${res.status}`);
+        const text = await res.text();
+        config = JSON.parse(text);
+        lastConfigText = text;
+        cachedETag = res.headers.get('ETag') || '';
+
+        title.textContent = config.title || '环境链接汇总';
+        status.textContent = '✅ 加载成功';
+        renderConfig();
+    } catch (err) {
+        status.classList.add('error');
+        status.textContent = '❌ 加载失败：' + err.message;
+    }
+}
+
+loadConfig();
+
+
+function toggleEditMode() {
+    isEditing = !isEditing;
+    document.getElementById('editor-buttons').style.display = isEditing ? 'block' : 'none';
+    renderConfig();
+}
+
+function renderConfig() {
+    const content = document.getElementById('content');
+    content.innerHTML = '';
+    config.sections.forEach((section, secIndex) => {
+        const sec = document.createElement('section');
+        sec.setAttribute('draggable', 'true');
+        sec.setAttribute('data-index', secIndex);
+        sec.addEventListener('dragstart', handleDragStart);
+        sec.addEventListener('dragover', handleDragOver);
+        sec.addEventListener('dragleave', handleDragLeave);
+        sec.addEventListener('drop', handleDrop);
+
+        const headerRow = document.createElement('div');
+        headerRow.className = 'item-row';
+
+        const titleSpan = document.createElement('span');
+        titleSpan.textContent = section.title;
+        titleSpan.className = 'editable';
+        if (isEditing) titleSpan.onclick = () => switchToSectionInput(titleSpan, secIndex);
+        headerRow.appendChild(titleSpan);
+        headerRow.appendChild(document.createElement('div'));
+
+        const delGroupBtn = document.createElement('button');
+        delGroupBtn.textContent = isEditing ? '🗑️' : '';
+        delGroupBtn.onclick = () => removeSection(secIndex);
+        headerRow.appendChild(delGroupBtn);
+        sec.appendChild(headerRow);
+
+        section.items.forEach((item, itemIndex) => {
+            const row = document.createElement('div');
+            row.className = 'item-row';
+
+            const labelSpan = document.createElement('span');
+            labelSpan.textContent = item.label;
+            labelSpan.className = 'editable';
+            if (isEditing) labelSpan.onclick = () => switchToLabelInput(labelSpan, secIndex, itemIndex);
+
+            const urlSpan = document.createElement('span');
+            urlSpan.textContent = item.url;
+            urlSpan.className = 'editable';
+            if (isEditing) {
+                urlSpan.onclick = () => switchToUrlInput(urlSpan, secIndex, itemIndex);
+            } else {
+                urlSpan.onclick = () => window.open(item.url, '_blank');
+            }
+
+            row.appendChild(labelSpan);
+            row.appendChild(urlSpan);
+
+            const delBtn = document.createElement('button');
+            delBtn.textContent = isEditing ? '🗑️' : '';
+            delBtn.onclick = () => removeItem(secIndex, itemIndex);
+            row.appendChild(delBtn);
+
+            sec.appendChild(row);
+        });
+
+        if (isEditing) {
+            const addBtn = document.createElement('button');
+            addBtn.textContent = '➕ 添加链接';
+            addBtn.onclick = () => addItem(secIndex);
+            sec.appendChild(addBtn);
+        }
+
+        content.appendChild(sec);
+    });
+}
+
+function handleDragStart(e) {
+    draggedIndex = parseInt(e.currentTarget.getAttribute('data-index'));
+    e.dataTransfer.effectAllowed = 'move';
+}
+
+function handleDragOver(e) {
+    e.preventDefault();
+    e.currentTarget.classList.add('drag-over');
+    e.dataTransfer.dropEffect = 'move';
+}
+
+function handleDragLeave(e) {
+    e.currentTarget.classList.remove('drag-over');
+}
+
+function handleDrop(e) {
+    e.preventDefault();
+    e.currentTarget.classList.remove('drag-over');
+    const targetIndex = parseInt(e.currentTarget.getAttribute('data-index'));
+    if (draggedIndex === null || draggedIndex === targetIndex) return;
+    const draggedItem = config.sections[draggedIndex];
+    config.sections.splice(draggedIndex, 1);
+    config.sections.splice(targetIndex, 0, draggedItem);
+    draggedIndex = null;
+    renderConfig();
+}
+function switchToLabelInput(span, secIndex, itemIndex) {
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.value = config.sections[secIndex].items[itemIndex].label;
+    input.onblur = () => {
+        config.sections[secIndex].items[itemIndex].label = input.value;
+        renderConfig();
+    };
+    input.onkeydown = e => { if (e.key === 'Enter') input.blur(); };
+    span.replaceWith(input);
+    input.focus();
+}
+
+function switchToUrlInput(span, secIndex, itemIndex) {
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.value = config.sections[secIndex].items[itemIndex].url;
+    input.onblur = () => {
+        config.sections[secIndex].items[itemIndex].url = input.value;
+        renderConfig();
+    };
+    input.onkeydown = e => { if (e.key === 'Enter') input.blur(); };
+    span.replaceWith(input);
+    input.focus();
+}
+
+function switchToSectionInput(span, secIndex) {
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.value = config.sections[secIndex].title;
+    input.onblur = () => {
+        config.sections[secIndex].title = input.value;
+        renderConfig();
+    };
+    input.onkeydown = e => { if (e.key === 'Enter') input.blur(); };
+    span.replaceWith(input);
+    input.focus();
+}
+
+function addItem(secIndex) {
+    config.sections[secIndex].items.push({ label: '', url: '' });
+    renderConfig();
+}
+
+function removeItem(secIndex, itemIndex) {
+    config.sections[secIndex].items.splice(itemIndex, 1);
+    renderConfig();
+}
+
+function addSection() {
+    config.sections.push({ title: '新分组', items: [] });
+    renderConfig();
+}
+
+function removeSection(index) {
+    config.sections.splice(index, 1);
+    renderConfig();
+}
+async function saveConfig() {
+    const status = document.getElementById('status');
+    const newConfigText = JSON.stringify(config, null, 2);
+
+    if (newConfigText === lastConfigText) {
+        status.textContent = '⚠️ 配置未变化，无需保存';
+        return;
+    }
+
+    try {
+        status.classList.remove('error');
+        status.textContent = '🌀 获取签名中...';
+        const res = await fetch(PRESIGN_ENDPOINT);
+        const { url } = await res.json();
+
+        status.textContent = '📤 写入中...';
+        const putRes = await fetch(url, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: newConfigText,
+        });
+
+        if (!putRes.ok) throw new Error(`写入失败：${putRes.status}`);
+        status.textContent = '✅ 保存成功';
+        lastConfigText = newConfigText;
+    } catch (err) {
+        status.classList.add('error');
+        status.textContent = '❌ 保存失败：' + err.message;
+    }
+}

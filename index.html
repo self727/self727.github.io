@@ -4,136 +4,25 @@
   <meta charset="UTF-8">
   <title>环境链接汇总 · 可编辑</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    body { font-family: Arial, sans-serif; line-height: 1.6; padding: 2em; background: #f9f9f9; }
-    h1, h2 { color: #333; }
-    input[type="text"] { width: 60%; padding: 4px 8px; margin-right: 8px; }
-    button { padding: 6px 12px; margin: 4px 4px 0 0; background: #007acc; color: white; border: none; border-radius: 4px; cursor: pointer; }
-    button:hover { background: #005fa3; }
-    section { margin-bottom: 2em; }
-    .item-row { margin-bottom: 0.5em; }
-    #status { font-size: 14px; color: #888; margin-bottom: 1em; }
-    #status.error { color: red; }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div id="edit-controls">
+  <button onclick="toggleEditMode()">📝 编辑</button>
+</div>
 
 <h1 id="page-title">🔄 加载中...</h1>
 <div id="status">正在从 COS 加载配置...</div>
 <div id="content"></div>
 
-<div>
+<div id="editor-buttons" style="display: none;">
   <button onclick="addSection()">➕ 添加新分组</button>
   <button onclick="saveConfig()">💾 保存到 COS</button>
 </div>
 
 <footer>
-  <p>📌 此页面支持编辑并保存至 COS，适合团队环境统一管理。</p>
+  <p>📌 此页面支持只读展示与编辑模式切换，适合团队环境统一管理。</p>
 </footer>
-
-<script>
-  const CONFIG_URL = 'https://rough-wind-37be.dyw1618.workers.dev/env.json';
-  const PRESIGN_ENDPOINT = 'https://cos-presign-worker.dyw1618.workers.dev/presign?key=env.json&type=put';
-
-  let config = { title: '', sections: [] };
-
-  async function loadConfig() {
-    const status = document.getElementById('status');
-    const title = document.getElementById('page-title');
-    try {
-      const res = await fetch(CONFIG_URL);
-      if (!res.ok) throw new Error(`加载失败：${res.status}`);
-      config = await res.json();
-      title.textContent = config.title || '环境链接汇总';
-      status.textContent = '✅ 加载成功';
-      renderConfig();
-    } catch (err) {
-      status.classList.add('error');
-      status.textContent = '❌ 加载失败：' + err.message;
-    }
-  }
-
-  function renderConfig() {
-    const content = document.getElementById('content');
-    content.innerHTML = '';
-    config.sections.forEach((section, secIndex) => {
-      const sec = document.createElement('section');
-      const h2 = document.createElement('h2');
-      h2.innerHTML = `<input type="text" value="${section.title}" onchange="updateSectionTitle(${secIndex}, this.value)">`;
-      sec.appendChild(h2);
-
-      section.items.forEach((item, itemIndex) => {
-        const row = document.createElement('div');
-        row.className = 'item-row';
-        row.innerHTML = `
-          <input type="text" value="${item.label}" onchange="updateItemLabel(${secIndex}, ${itemIndex}, this.value)">
-          <input type="text" value="${item.url}" onchange="updateItemUrl(${secIndex}, ${itemIndex}, this.value)">
-          <button onclick="removeItem(${secIndex}, ${itemIndex})">🗑 删除</button>
-        `;
-        sec.appendChild(row);
-      });
-
-      const addBtn = document.createElement('button');
-      addBtn.textContent = '➕ 添加链接';
-      addBtn.onclick = () => addItem(secIndex);
-      sec.appendChild(addBtn);
-
-      content.appendChild(sec);
-    });
-  }
-
-  function updateSectionTitle(index, value) {
-    config.sections[index].title = value;
-  }
-
-  function updateItemLabel(secIndex, itemIndex, value) {
-    config.sections[secIndex].items[itemIndex].label = value;
-  }
-
-  function updateItemUrl(secIndex, itemIndex, value) {
-    config.sections[secIndex].items[itemIndex].url = value;
-  }
-
-  function addItem(secIndex) {
-    config.sections[secIndex].items.push({ label: '', url: '' });
-    renderConfig();
-  }
-
-  function removeItem(secIndex, itemIndex) {
-    config.sections[secIndex].items.splice(itemIndex, 1);
-    renderConfig();
-  }
-
-  function addSection() {
-    config.sections.push({ title: '新分组', items: [] });
-    renderConfig();
-  }
-
-  async function saveConfig() {
-    const status = document.getElementById('status');
-    try {
-      status.classList.remove('error');
-      status.textContent = '🌀 获取签名中...';
-      const res = await fetch(PRESIGN_ENDPOINT);
-      const { url } = await res.json();
-
-      status.textContent = '📤 写入中...';
-      const putRes = await fetch(url, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(config, null, 2),
-      });
-
-      if (!putRes.ok) throw new Error(`写入失败：${putRes.status}`);
-      status.textContent = '✅ 保存成功';
-    } catch (err) {
-      status.classList.add('error');
-      status.textContent = '❌ 保存失败：' + err.message;
-    }
-  }
-
-  loadConfig();
-</script>
-
+<script src="config.js"></script>
 </body>
 </html>
