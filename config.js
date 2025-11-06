@@ -6,7 +6,6 @@ let draggedIndex = null;
 let isEditing = false;
 let cachedETag = '';
 let lastConfigText = '';
-
 async function loadConfig() {
     const status = document.getElementById('status');
     const title = document.getElementById('page-title');
@@ -36,9 +35,38 @@ async function loadConfig() {
     }
 }
 
+async function saveConfig() {
+    const status = document.getElementById('status');
+    const newConfigText = JSON.stringify(config, null, 2);
+
+    if (newConfigText === lastConfigText) {
+        status.textContent = '⚠️ 配置未变化，无需保存';
+        return;
+    }
+
+    try {
+        status.classList.remove('error');
+        status.textContent = '🌀 获取签名中...';
+        const res = await fetch(PRESIGN_ENDPOINT);
+        const { url } = await res.json();
+
+        status.textContent = '📤 写入中...';
+        const putRes = await fetch(url, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: newConfigText,
+        });
+
+        if (!putRes.ok) throw new Error(`写入失败：${putRes.status}`);
+        status.textContent = '✅ 保存成功';
+        lastConfigText = newConfigText;
+    } catch (err) {
+        status.classList.add('error');
+        status.textContent = '❌ 保存失败：' + err.message;
+    }
+}
+
 loadConfig();
-
-
 function toggleEditMode() {
     isEditing = !isEditing;
     document.getElementById('editor-buttons').style.display = isEditing ? 'block' : 'none';
@@ -80,7 +108,10 @@ function renderConfig() {
             const labelSpan = document.createElement('span');
             labelSpan.textContent = item.label;
             labelSpan.className = 'editable';
-            if (isEditing) labelSpan.onclick = () => switchToLabelInput(labelSpan, secIndex, itemIndex);
+            if (isEditing) labelSpan.onclick = () => switchToLabelInput(labelSpan, secIndex, itemIndex, () => {
+                const urlSpan = row.querySelector('span.editable:nth-child(2)');
+                if (urlSpan) switchToUrlInput(urlSpan, secIndex, itemIndex);
+            });
 
             const urlSpan = document.createElement('span');
             urlSpan.textContent = item.url;
@@ -117,17 +148,14 @@ function handleDragStart(e) {
     draggedIndex = parseInt(e.currentTarget.getAttribute('data-index'));
     e.dataTransfer.effectAllowed = 'move';
 }
-
 function handleDragOver(e) {
     e.preventDefault();
     e.currentTarget.classList.add('drag-over');
     e.dataTransfer.dropEffect = 'move';
 }
-
 function handleDragLeave(e) {
     e.currentTarget.classList.remove('drag-over');
 }
-
 function handleDrop(e) {
     e.preventDefault();
     e.currentTarget.classList.remove('drag-over');
@@ -139,13 +167,14 @@ function handleDrop(e) {
     draggedIndex = null;
     renderConfig();
 }
-function switchToLabelInput(span, secIndex, itemIndex) {
+function switchToLabelInput(span, secIndex, itemIndex, onFinish) {
     const input = document.createElement('input');
     input.type = 'text';
     input.value = config.sections[secIndex].items[itemIndex].label;
     input.onblur = () => {
         config.sections[secIndex].items[itemIndex].label = input.value;
         renderConfig();
+        if (typeof onFinish === 'function') onFinish();
     };
     input.onkeydown = e => { if (e.key === 'Enter') input.blur(); };
     span.replaceWith(input);
@@ -181,7 +210,27 @@ function switchToSectionInput(span, secIndex) {
 function addItem(secIndex) {
     config.sections[secIndex].items.push({ label: '', url: '' });
     renderConfig();
+
+    const sectionEl = document.querySelectorAll('section')[secIndex];
+    const itemCount = config.sections[secIndex].items.length;
+    const row = sectionEl.querySelectorAll('.item-row')[itemCount]; // 第一个是标题行
+
+    const labelSpan = row.querySelector('span.editable:nth-child(1)');
+    const urlSpan = row.querySelector('span.editable:nth-child(2)');
+
+    if (labelSpan && urlSpan) {
+        switchToLabelInput(labelSpan, secIndex, itemCount - 1, () => {
+            // ✅ 延迟触发链接编辑，确保 DOM 已渲染
+            setTimeout(() => {
+                const updatedSection = document.querySelectorAll('section')[secIndex];
+                const updatedRow = updatedSection.querySelectorAll('.item-row')[itemCount];
+                const updatedUrlSpan = updatedRow.querySelector('span.editable:nth-child(2)');
+                if (updatedUrlSpan) switchToUrlInput(updatedUrlSpan, secIndex, itemCount - 1);
+            }, 0);
+        });
+    }
 }
+
 
 function removeItem(secIndex, itemIndex) {
     config.sections[secIndex].items.splice(itemIndex, 1);
@@ -191,39 +240,14 @@ function removeItem(secIndex, itemIndex) {
 function addSection() {
     config.sections.push({ title: '新分组', items: [] });
     renderConfig();
+
+    const sectionEl = document.querySelectorAll('section');
+    const lastIndex = sectionEl.length - 1;
+    const titleSpan = sectionEl[lastIndex].querySelector('.item-row span.editable');
+    if (titleSpan) switchToSectionInput(titleSpan, lastIndex);
 }
 
 function removeSection(index) {
     config.sections.splice(index, 1);
     renderConfig();
-}
-async function saveConfig() {
-    const status = document.getElementById('status');
-    const newConfigText = JSON.stringify(config, null, 2);
-
-    if (newConfigText === lastConfigText) {
-        status.textContent = '⚠️ 配置未变化，无需保存';
-        return;
-    }
-
-    try {
-        status.classList.remove('error');
-        status.textContent = '🌀 获取签名中...';
-        const res = await fetch(PRESIGN_ENDPOINT);
-        const { url } = await res.json();
-
-        status.textContent = '📤 写入中...';
-        const putRes = await fetch(url, {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: newConfigText,
-        });
-
-        if (!putRes.ok) throw new Error(`写入失败：${putRes.status}`);
-        status.textContent = '✅ 保存成功';
-        lastConfigText = newConfigText;
-    } catch (err) {
-        status.classList.add('error');
-        status.textContent = '❌ 保存失败：' + err.message;
-    }
 }
