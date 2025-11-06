@@ -16,24 +16,33 @@ async function loadConfig() {
         });
 
         if (res.status === 304) {
-            status.textContent = '⚠️ 远程配置未变化，跳过更新';
+            // 配置未变化，跳过更新
+            status.textContent = '';
             return;
         }
 
         if (!res.ok) throw new Error(`加载失败：${res.status}`);
+
         const text = await res.text();
         config = JSON.parse(text);
         lastConfigText = text;
         cachedETag = res.headers.get('ETag') || '';
 
+        // 更新页面标题
         title.textContent = config.title || '环境链接汇总';
-        status.textContent = '✅ 加载成功';
+
+        // 清空状态提示
+        status.textContent = '';
+        status.classList.remove('error');
+
+        // 渲染配置内容
         renderConfig();
     } catch (err) {
         status.classList.add('error');
         status.textContent = '❌ 加载失败：' + err.message;
     }
 }
+
 
 async function saveConfig() {
     const status = document.getElementById('status');
@@ -96,7 +105,7 @@ function renderConfig() {
         headerRow.appendChild(document.createElement('div'));
 
         const delGroupBtn = document.createElement('button');
-        delGroupBtn.textContent = isEditing ? '🗑️' : '';
+        delGroupBtn.textContent = isEditing ? '❌' : '';
         delGroupBtn.onclick = () => removeSection(secIndex);
         headerRow.appendChild(delGroupBtn);
         sec.appendChild(headerRow);
@@ -126,7 +135,7 @@ function renderConfig() {
             row.appendChild(urlSpan);
 
             const delBtn = document.createElement('button');
-            delBtn.textContent = isEditing ? '🗑️' : '';
+            delBtn.textContent = isEditing ? '❌' : '';
             delBtn.onclick = () => removeItem(secIndex, itemIndex);
             row.appendChild(delBtn);
 

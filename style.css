@@ -1,48 +1,138 @@
+/* 页面整体 */
 body {
     font-family: Arial, sans-serif;
-    line-height: 1.6;
-    padding: 2em;
+    font-size: 13px;
+    line-height: 1.4;
+    padding: 1.5em;
     background: #f9f9f9;
+    margin: 0;
 }
-h1 { color: #333; }
-input[type="text"] {
-    padding: 4px 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+
+/* 顶部标题栏固定 */
+#page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    background: #f9f9f9;
+    padding: 0.5em 0.8em;
+    z-index: 10;
+    border-bottom: 1px solid #ddd;
 }
-button {
-    padding: 6px 12px;
-    margin: 4px 4px 0 0;
+
+/* 标题文字 */
+#page-title {
+    font-size: 16px;
+    margin: 0;
+}
+
+/* 顶部右侧按钮容器 */
+#header-actions {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+/* 编辑按钮 */
+#edit-toggle {
+    font-size: 13px;
+    padding: 4px 10px;
     background: #007acc;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
 }
-button:hover { background: #005fa3; }
-section {
-    margin-bottom: 2em;
-    background: #fff;
-    padding: 1em;
-    border-radius: 6px;
-    box-shadow: 0 0 4px rgba(0,0,0,0.1);
+#edit-toggle:hover {
+    background: #005fa3;
 }
+
+/* 编辑模式下的按钮组 */
+#editor-buttons {
+    display: flex;
+    gap: 6px;
+}
+#editor-buttons button {
+    font-size: 13px;
+    padding: 4px 10px;
+    background: #007acc;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+#editor-buttons button:hover {
+    background: #005fa3;
+}
+
+/* 状态提示 */
+#status {
+    font-size: 12px;
+    color: #666;
+    margin: 0.5em 0 1em;
+}
+#status.error {
+    color: red;
+}
+
+/* 分组容器 */
+section {
+    margin-bottom: 1em;
+    background: #fff;
+    padding: 0.8em;
+    border-radius: 5px;
+    box-shadow: 0 0 3px rgba(0,0,0,0.08);
+}
+section[draggable="true"] {
+    cursor: move;
+}
+section.drag-over {
+    outline: 2px dashed #007acc;
+}
+
+/* 每行布局 */
 .item-row {
     display: grid;
     grid-template-columns: 1fr 2fr auto;
-    gap: 8px;
+    gap: 6px;
     align-items: center;
-    margin-bottom: 0.5em;
+    margin-bottom: 0.4em;
+    font-size: 13px;
 }
-.item-row input[type="text"] {
+
+/* 可编辑文字 */
+span.editable {
+    cursor: pointer;
+}
+
+/* 输入框样式 */
+input[type="text"] {
+    padding: 3px 6px;
+    font-size: 13px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
     width: 100%;
 }
-#status {
-    font-size: 14px;
-    color: #888;
-    margin-bottom: 1em;
+
+/* 通用按钮样式 */
+button {
+    padding: 4px 8px;
+    font-size: 13px;
+    margin: 2px 4px 0 0;
+    background: #007acc;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 }
-#status.error { color: red; }
-section[draggable="true"] { cursor: move; }
-section.drag-over { outline: 2px dashed #007acc; }
-span.editable { cursor: pointer; }
+button:hover {
+    background: #005fa3;
+}
+
+/* 页脚说明 */
+footer {
+    font-size: 12px;
+    color: #888;
+    margin-top: 2em;
+}

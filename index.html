@@ -1,28 +1,32 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <title>环境链接汇总 · 可编辑</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>环境链接汇总 · 可编辑</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div id="edit-controls">
-  <button onclick="toggleEditMode()">📝 编辑</button>
+
+<div id="page-header">
+    <h1 id="page-title">🔄 加载中...</h1>
+    <div id="header-actions">
+        <button id="edit-toggle" onclick="toggleEditMode()">📝 编辑</button>
+        <div id="editor-buttons" style="display: none;">
+            <button onclick="addSection()">➕ 添加新分组</button>
+            <button onclick="saveConfig()">💾 保存到 COS</button>
+        </div>
+    </div>
 </div>
 
-<h1 id="page-title">🔄 加载中...</h1>
 <div id="status">正在从 COS 加载配置...</div>
+
 <div id="content"></div>
 
-<div id="editor-buttons" style="display: none;">
-  <button onclick="addSection()">➕ 添加新分组</button>
-  <button onclick="saveConfig()">💾 保存到 COS</button>
-</div>
 
 <footer>
-  <p>📌 此页面支持只读展示与编辑模式切换，适合团队环境统一管理。</p>
+    <p>📌 此页面支持只读展示与编辑模式切换，适合团队环境统一管理。</p>
 </footer>
+
 <script src="config.js"></script>
 </body>
-</html>
